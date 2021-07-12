@@ -1,0 +1,46 @@
+31951 deny tcp from 62.69.162.7 80 to me in
+31951 deny tcp from 62.69.162.7 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.887031 1 257
+a 0.887136 257
+r 1.047038 257 513
+a 1.047087 513
+r 1.047243 513 769
+a 1.047260 769
+r 1.047350 769 1025
+r 1.047383 1025 1281
+r 1.047414 1281 1537
+r 1.047445 1537 1793
+a 1.047461 1793
+r 1.047549 1793 2049
+r 1.047582 2049 2305
+r 1.047612 2305 2561
+r 1.047643 2561 2817
+r 1.047673 2817 3073
+r 1.047704 3073 3329
+r 1.047735 3329 3585
+r 1.207033 3585 3841
+r 1.207094 3841 4097
+r 1.207131 4097 4353
+r 1.207163 4353 4609
+r 1.207194 4609 4865
+r 1.207224 4865 5121
+r 1.207255 5121 5377
+r 1.207285 5377 5633
+r 1.207315 5633 5889
+r 2.277020 1793 2049
+RTO ===> 2.277010 1.207309
+Retransmission detected...
+RESULT: session.rtt = 0.158079 LastWindow: 16 LIMIT: 12 APPROPRIATE_BYTE_COUNTING

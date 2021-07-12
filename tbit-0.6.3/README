@@ -1,0 +1,113 @@
+BEFORE  YOU START
+-----------------
+
+. Read the companion paper: http://www.aciri.org/tbit/tbit.ps
+. View the slides of the talk given at NANOG: http://www.aciri.org/tbit/nanog-talk.pdf  
+
+
+GETTING STARTED
+---------------
+
+This directory contains source code for the first alpha release of
+TBIT, which tries to identify remote TCP version. This code base
+was largely developed and tested on FreeBSD 4.3, it may or may not
+work on Linux, and most likely won't work on any other OS.
+
+To compile and run TBIT, you'll need three things:
+
+  1. a compiled version of McCanne, Leres and Jacobson's libpcap library
+    (I've included the version of this distribution I've used, but the
+    most up-to-date version can be found at
+    ftp://ftp.ee.lbl.gov.libpcap.tar.Z)
+
+  2. a FreeBSD kernel compiled with support for BPF and firewalls.  I
+      suggest compiling a kernel with the following options in your config
+      file:
+
+      options         IPFIREWALL                   #firewall
+      options         IPFIREWALL_DEFAULT_TO_ACCEPT #allow everything by default
+      options         NMBCLUSTERS=8192
+
+      pseudo-device   bpfilter 16                  #Berkeley packet filter
+
+  3. Root privilages. TBIT must be run by root or suid root because it
+     writes raw sockets, installs firewall filters and packet filters.
+     This has several security implications, so make sure you talk to
+     your sysadmin before you run this program.
+
+USING TBIT 
+-----------
+The basic syntax is as follows:
+
+tbit [-p port] [-w sourceport] [-m MSS] [-h URL] [-f flags] [-d] [-v] -t <TEST> <target>
+
+- port is the port on remote host (default 80) 
+- sourceport is what you want to use on your machine (default ANY) 
+- MSS is the max segment size (bytes) that you want to use for the
+  test (default 16) 
+- URL is the URL you want to request from the remote host (only the
+  part following the hostname) (default "index.html"); 
+- flgas is an integer < 256, to be used in the Flags tests. 
+- "-d" will produce debug output 
+- "-v" will produce verbose output
+- <TEST> is one of: 
+   - Reno
+   - Sack
+   - Timestamp
+   - TahoeNoFR
+   - WinHalf
+   - ECN
+   - ECN_IPOnly
+   - SackRcvr
+   - DelAck
+   - TimeWait
+   - IniRTO
+   - PiggyFIN
+   - SackSndr3P
+   - TotData
+   - Flags
+   - NewECN  *** new ***
+
+   Follow capitalization exactly.  
+
+- <target> is either the hostname or the ip address (dotted decimal
+  format) the host you want to connect to
+
+Here is the output from a sample session:
+
+# ./tbit -m32 -t Reno www.altavista.com
+##### droppacket 0.145557 385 417
+##### droppacket 0.176479 481 513
+##### rexmit packet 0.198352 385 417
+##### rexmit packet 0.211520 417 449
+##### rexmit packet 0.258346 481 513
+##### rexmit packet 0.271379 513 545
+71 packets received by filter
+0 packets dropped by kernel
+#### rx=4 to=0 AggresiveReno
+
+If you do use this code and find problems or make improvements
+please send them back to us so we can improve TBIT for later
+releases.  If you experience problems, please specify the operating
+system you're using, the DNS name and IP address of the target
+host, how TBIT failed, and (ideally) a tcpdump trace of the complete
+conversation between the host pairs.
+
+Special thanks to Stefan Savage at University of Washington for
+letting us use some of the "Sting" code.
+
+- Jitendra Padhye, padhye@aciri.org
+
+
+COMMENTS ON NEW RELEASE
+-----------------------
+
+The new release of TBIT include the following 
+modifications/additions:
+
+1. Fix of Preparerequest() function to interact properly with 
+   HTTP 1.1 servers
+
+2. Modification of sack_sndr.c test to allowing the reception of 
+   out-of-order retransmissions
+

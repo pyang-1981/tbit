@@ -1,0 +1,40 @@
+31035 deny tcp from 69.38.144.79 80 to me in
+31035 deny tcp from 69.38.144.79 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+##### Unreliable
+seq: 1 HTTP RESPONSE CODE: 200
+r 2.602861 1 257
+a 2.602993 257
+r 2.692828 257 513
+a 2.692854 513
+r 2.692950 513 769
+a 2.692968 769
+r 2.693056 769 1025
+r 2.782827 1025 1281
+r 2.782863 1281 1537
+r 2.782894 1537 1793
+a 2.782910 1793
+r 2.783005 1793 2049
+r 2.872972 2049 2305
+r 2.873031 2305 2561
+r 2.873062 2561 2817
+r 2.873093 2817 3073
+r 2.873123 3073 3329
+r 2.873153 3329 3585
+r 2.873208 3585 3841
+r 2.873242 3841 4097
+r 4.532878 1793 2049
+RTO ===> 4.532867 2.873236
+Retransmission detected...
+RESULT: session.rtt = 0.085652 LastWindow: 9 LIMIT: 5 APPROPRIATE_BYTE_COUNTING

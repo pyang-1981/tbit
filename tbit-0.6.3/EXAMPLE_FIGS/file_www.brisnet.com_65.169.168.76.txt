@@ -1,0 +1,47 @@
+01519 deny tcp from 65.169.168.76 80 to me in
+01519 deny tcp from 65.169.168.76 80 to me in
+09790 deny tcp from 62.104.23.222 80 to me in
+37465 deny tcp from 204.92.97.10 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.644249 1 257
+a 0.644356 257
+r 0.714197 257 513
+a 0.714218 513
+r 0.714313 513 769
+a 0.714331 769
+r 0.714419 769 1025
+r 0.714451 1025 1281
+r 0.714481 1281 1537
+r 0.714512 1537 1793
+a 0.714527 1793
+r 0.714615 1793 2049
+r 0.714647 2049 2305
+r 0.714694 2305 2561
+r 0.714724 2561 2817
+r 0.714755 2817 3073
+r 0.714785 3073 3329
+r 0.714815 3329 3585
+r 0.784290 3585 3841
+r 0.784352 3841 4097
+r 0.784388 4097 4353
+r 0.784420 4353 4609
+r 0.784450 4609 4865
+r 0.784481 4865 5121
+r 0.784511 5121 5377
+r 0.784541 5377 5633
+r 3.554228 1793 2049
+RTO ===> 3.554218 0.784535
+Retransmission detected...
+RESULT: session.rtt = 0.453481 LastWindow: 15 LIMIT: 11 APPROPRIATE_BYTE_COUNTING

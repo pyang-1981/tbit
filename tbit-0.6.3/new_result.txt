@@ -1,0 +1,52 @@
+19990 deny tcp from 12.101.12.90 80 to me in
+01868 deny tcp from 216.26.169.52 80 to me in
+08153 deny tcp from 210.59.230.202 80 to me in
+19588 deny tcp from 217.174.97.50 80 to me in
+19990 deny tcp from 12.101.12.90 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65500 deny tcp from 212.8.36.98 80 to me in
+65500 deny tcp from 168.75.65.99 80 to me in
+65500 deny tcp from 193.55.99.70 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.433156 1 257
+a 0.433268 257
+r 0.524092 257 513
+Transition - d: 0.090873 win(2): 1...
+a 0.524142 513
+r 0.532929 513 769
+a 0.532953 769
+r 0.547339 769 1025
+r 0.547403 1025 1281
+r 0.553042 1281 1537
+r 0.624069 1537 1793
+Transition - d: 0.099985 win(3): 5...
+PN: 7 AT: 0.624124 RTT: 0.090630
+a 0.624136 1793
+r 0.633175 1793 2049
+PN: 8 AT: 0.633200 D: 0.009076 RTT: 0.090630
+r 0.646559 2049 2305
+PN: 9 AT: 0.646615 D: 0.022491 RTT: 0.090630
+r 0.646646 2305 2561
+PN: 10 AT: 0.646665 D: 0.022541 RTT: 0.090630
+r 0.724107 2561 2817
+Transition - d: 0.100045 win(4): 4...
+PN: 11 AT: 0.724169 D: 0.100045 RTT: 0.090630
+Starting ABC...
+r 0.733020 2817 3073
+r 0.744113 3073 3329
+r 0.753075 3329 3585
+RTO ===> 5.188698 0.753131
+CURR WIN: 5 NEW_LAST WINDOW: 4 cum: 3
+Retransmission detected...
+RESULT: session.rtt = 0.090630 LastWindow: 7 ABC Window: 8 LIMIT: 1 PACKET_COUNTING

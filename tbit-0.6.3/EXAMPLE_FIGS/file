@@ -1,0 +1,34 @@
+30339 deny tcp from 128.113.2.14 80 to me in
+15435 deny tcp from 194.67.137.178 80 to me in
+19749 deny tcp from 204.225.97.110 80 to me in
+30339 deny tcp from 128.113.2.14 80 to me in
+36260 deny tcp from 66.25.52.186 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 2.101874 1 257
+a 2.101978 257
+r 2.102141 257 513
+a 2.102159 513
+r 2.281827 513 769
+a 2.281876 769
+r 2.282054 769 1025
+r 2.282089 1025 1281
+r 2.282120 1281 1537
+r 2.441786 1537 1793
+a 2.441807 1793
+r 2.441906 1793 2049
+r 2.591791 2049 2305
+r 2.591835 2305 2561
+r 2.591868 2561 2817
+r 2.591899 2817 3073
+r 2.591929 3073 3329
+r 3.481839 1793 2049
+RTO ===> 3.481828 2.591923
+Retransmission detected...
+RESULT: session.rtt = 0.155092 LastWindow: 6 LIMIT: 2 APPROPRIATE_BYTE_COUNTING

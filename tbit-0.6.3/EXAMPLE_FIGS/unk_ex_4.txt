@@ -1,0 +1,34 @@
+26626 deny tcp from 81.95.98.141 80 to me in
+00605 deny tcp from 130.246.192.50 80 to me in
+07724 deny tcp from 81.90.160.97 80 to me in
+26626 deny tcp from 81.95.98.141 80 to me in
+30551 deny tcp from 130.246.192.50 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 155.100.91.195 80 to me in
+65200 deny tcp from 129.143.244.238 80 to me in
+65300 deny tcp from 64.29.219.134 80 to me in
+65400 deny tcp from 64.106.169.19 80 to me in
+65500 deny tcp from 209.197.122.165 80 to me in
+65500 deny tcp from 209.97.57.183 80 to me in
+65500 deny tcp from 69.93.67.234 80 to me in
+65500 deny tcp from 64.32.216.45 80 to me in
+65500 deny tcp from 209.121.115.25 80 to me in
+65500 deny tcp from 159.204.50.123 80 to me in
+65535 deny ip from any to any
+BC T: 0
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+r 1.320663 1 257
+a 1.320749 257
+r 1.500514 257 513
+a 1.500561 513
+r 1.500722 513 769
+a 1.500741 769
+r 1.680517 769 1025
+r 1.680583 1025 1281
+r 3.670514 769 1025
+Retransmission detected...
+RESULT: session.rtt = 0.174231 LastWindow: 2 UNKNOWN_CASE diff: -2
+RETURN CODE: 33

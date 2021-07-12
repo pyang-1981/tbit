@@ -1,0 +1,43 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:578: checking host system type
+configure:599: checking target system type
+configure:617: checking build system type
+configure:711: checking for gcc
+configure:788: checking whether the C compiler (gcc  ) works
+configure:802: gcc -o conftest    conftest.c  1>&5
+configure:822: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:827: checking whether we are using GNU C
+configure:836: gcc -E conftest.c
+configure:851: checking whether gcc accepts -g
+configure:884: checking gcc version
+configure:1028: checking how to run the C preprocessor
+configure:1049: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1092: checking for malloc.h
+configure:1102: gcc -E  conftest.c >/dev/null 2>conftest.out
+In file included from configure:1098:
+/usr/include/malloc.h:2: warning: #warning "this file includes <malloc.h> which is deprecated, use <stdlib.h> instead"
+configure: failed program was:
+#line 1097 "configure"
+#include "confdefs.h"
+#include <malloc.h>
+configure:1092: checking for sys/ioccom.h
+configure:1102: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1092: checking for sys/sockio.h
+configure:1102: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1131: checking for ANSI ioctl definitions
+configure:1155: gcc -c -g -O2  conftest.c 1>&5
+configure:1178: checking for ether_hostton
+configure:1206: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1178: checking for strerror
+configure:1206: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1238: checking packet capture type
+configure:1419: checking for flex
+configure:1452: checking for flex 2.4 or higher
+configure:1478: checking for bison
+configure:1602: checking for ranlib
+configure:1672: checking if sockaddr struct has sa_len member
+configure:1686: gcc -c -g -O2  conftest.c 1>&5
+configure:1707: checking if unaligned accesses fail
+configure:1803: checking for a BSD compatible install

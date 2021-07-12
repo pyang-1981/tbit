@@ -1,0 +1,46 @@
+09745 deny tcp from 12.1.208.54 80 to me in
+09745 deny tcp from 12.1.208.54 80 to me in
+36125 deny tcp from 62.149.130.36 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.179667 1 257
+a 0.179770 257
+r 0.248783 257 513
+a 0.248806 513
+r 0.248915 769 1025
+r 0.248945 513 769
+#### Acks 1
+#### reordering detected
+PKT NUM: 3 session.totDataPktsRcvd: 4
+a 0.248969 1025
+r 0.319618 1025 1281
+r 0.319655 1281 1537
+r 0.319686 1537 1793
+a 0.319701 1793
+r 0.319793 2049 2305
+r 0.319824 1793 2049
+#### Acks 1
+#### reordering detected
+PKT NUM: 8 session.totDataPktsRcvd: 9
+r 0.388859 2305 2561
+r 0.388921 2817 3073
+r 0.388950 2561 2817
+#### Acks 0
+#### reordering detected
+PKT NUM: 11 session.totDataPktsRcvd: 12
+r 0.388992 3073 3329
+r 0.589303 1793 2049
+#### Acks 1
+#### reordering detected
+PKT NUM: 8 session.totDataPktsRcvd: 14
+r 1.128682 1793 2049
+RTO ===> 1.128656 0.589291
+PKT NUM: 8 session.totDataPktsRcvd: 15
+Retransmission detected...
+RESULT: session.rtt = 0.068419 LastWindow: 6 LIMIT: 2 APPROPRIATE_BYTE_COUNTING

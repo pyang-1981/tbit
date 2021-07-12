@@ -1,0 +1,56 @@
+08016 deny tcp from 134.28.202.17 80 to me in
+08016 deny tcp from 134.28.202.17 80 to me in
+16490 deny tcp from 64.71.131.147 80 to me in
+23243 deny tcp from 64.38.254.5 80 to me in
+37763 deny tcp from 198.141.28.14 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65500 deny tcp from 212.8.36.98 80 to me in
+65500 deny tcp from 168.75.65.99 80 to me in
+65500 deny tcp from 193.55.99.70 80 to me in
+65500 deny tcp from 213.161.81.91 80 to me in
+65500 deny tcp from 66.223.41.228 80 to me in
+65500 deny tcp from 195.47.247.63 80 to me in
+65500 deny tcp from 158.94.0.50 80 to me in
+65500 deny tcp from 216.157.192.23 80 to me in
+65500 deny tcp from 207.61.222.202 80 to me in
+65500 deny tcp from 204.124.93.19 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.990098 1 257
+START ACK RTT: 0
+a 0.990242 257
+r 0.990445 257 513
+ADD ACK RTT: 0.000236
+a 0.990477 513
+r 0.990571 513 769
+ADD ACK RTT: 0.000361
+a 0.990601 769
+r 0.990690 769 1025
+r 1.180001 1025 1281
+r 1.180064 1281 1537
+r 1.180100 1537 1793
+START ACK RTT: 0
+a 1.180128 1793
+r 1.180282 1793 2049
+r 1.180320 2049 2305
+r 1.180356 2305 2561
+r 1.366535 2561 2817
+r 1.366606 2817 3073
+r 1.366641 3073 3329
+r 1.366677 3329 3585
+r 1.366730 3585 3841
+r 1.366767 3841 4097
+RTO ===> 4.049958 1.366761
+CP: 3 LW: 6 ACKS_RTT: 1 N: 9 L: 2
+Retransmission detected...
+RESULT: session.rtt = 0.182232 LastWindow: 7 ABC Window: 9 LIMIT: 2 APPROPRIATE_BYTE_COUNTING

@@ -1,0 +1,42 @@
+36721 deny tcp from 128.196.64.66 80 to me in
+12373 deny tcp from 194.6.181.200 80 to me in
+16461 deny tcp from 69.57.154.43 80 to me in
+36721 deny tcp from 128.196.64.66 80 to me in
+37421 deny tcp from 137.99.25.179 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65500 deny tcp from 212.8.36.98 80 to me in
+65500 deny tcp from 168.75.65.99 80 to me in
+65500 deny tcp from 193.55.99.70 80 to me in
+65500 deny tcp from 213.161.81.91 80 to me in
+65500 deny tcp from 66.223.41.228 80 to me in
+65500 deny tcp from 195.47.247.63 80 to me in
+65500 deny tcp from 158.94.0.50 80 to me in
+65500 deny tcp from 216.157.192.23 80 to me in
+65500 deny tcp from 207.61.222.202 80 to me in
+65500 deny tcp from 204.124.93.19 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+RTO ===> 0.920593 -99999.000000
+128.196.64.66.80 > 192.150.187.28.10914 A seq: 1, ack: 179 win: 49152, urg: 0, ttl: 48 datalen: 10201, optlen: 0 
+HTTP RESPONSE CODE: 200
+r 1.210733 1 257
+a 1.211001 257
+r 1.211032 257 513
+d 1.211046 257 513
+r 1.211071 513 769
+r 1.211104 769 1025
+r 1.280453 1025 1281
+a 1.280593 257
+r 1.280620 1281 1537
+a 1.280707 257
+r 1.354388 1537 1793
+RESULT: session.rtt = 0.061742 mss = 256 InitWin: 4 HighestPktRcvd: 7 LastPkt: 7 Limited Transmit IS IMPLEMENTED

@@ -1,0 +1,39 @@
+28916 deny tcp from 82.208.29.3 80 to me in
+04593 deny tcp from 81.19.72.10 80 to me in
+05692 deny tcp from 128.197.13.20 80 to me in
+12812 deny tcp from 82.196.4.12 80 to me in
+20330 deny tcp from 81.201.104.20 80 to me in
+21248 deny tcp from 81.19.72.10 80 to me in
+25312 deny tcp from 65.174.90.60 80 to me in
+28916 deny tcp from 82.208.29.3 80 to me in
+31563 deny tcp from 64.49.223.227 80 to me in
+32823 deny tcp from 81.19.72.10 80 to me in
+33400 deny tcp from 66.179.48.115 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 69.56.150.130 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+r 2.084591 1 129
+a 2.084655 129
+r 2.274483 129 257
+a 2.274524 257
+r 2.274707 257 385
+a 2.274721 385
+r 2.454533 385 513
+a 2.454566 513
+r 2.454719 513 641
+a 2.454732 641
+r 2.454828 641 769
+a 2.454840 769
+r 2.454933 769 897
+a 2.454946 897
+r 2.634615 897 1025
+a 2.634636 1025
+r 2.634745 1025 1153
+a 2.634757 1153
+r 2.634852 1153 1281
+a 2.634864 1281
+r 2.634957 1281 1409

@@ -1,0 +1,31 @@
+10214 deny tcp from 82.211.88.242 80 to me in
+04419 deny tcp from 64.94.246.140 80 to me in
+04593 deny tcp from 81.19.72.10 80 to me in
+05462 deny tcp from 81.176.64.96 80 to me in
+05692 deny tcp from 128.197.13.20 80 to me in
+10214 deny tcp from 82.211.88.242 80 to me in
+21248 deny tcp from 81.19.72.10 80 to me in
+21719 deny tcp from 64.41.106.83 80 to me in
+23408 deny tcp from 81.21.192.196 80 to me in
+32823 deny tcp from 81.19.72.10 80 to me in
+36974 deny tcp from 69.22.128.41 80 to me in
+37704 deny tcp from 81.201.104.2 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 69.56.150.130 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+r 3.154566 1 82
+r 3.154652 82 210
+r 6.354565 1 129
+Fast retransmit...
+Retransmission...
+Start test packet: 3
+a 6.354722 210
+r 6.508444 210 338
+r 6.508501 338 466
+a 6.508684 210
+r 6.654547 466 594
+RESULT: session.rtt = 0.146708 mss = 128 InitWin: 1 HighestPktRcvd: 4 LastPkt: 4 Limited Transmit IS IMPLEMENTED

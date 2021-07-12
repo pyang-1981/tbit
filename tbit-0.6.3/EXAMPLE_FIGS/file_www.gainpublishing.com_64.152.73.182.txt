@@ -1,0 +1,43 @@
+35251 deny tcp from 64.152.73.182 80 to me in
+01278 deny tcp from 62.103.158.100 80 to me in
+35251 deny tcp from 64.152.73.182 80 to me in
+65000 allow ip from any to any
+65100 deny tcp from 202.152.30.2 80 to me in
+65200 deny tcp from 69.59.149.121 80 to me in
+65300 deny tcp from 128.173.72.33 80 to me in
+65400 deny tcp from 69.57.144.12 80 to me in
+65500 deny tcp from 65.112.222.18 80 to me in
+65500 deny tcp from 64.159.71.162 80 to me in
+65535 deny ip from any to any
+session.MTU = 1500
+
+Current firewall rules:
+----------------------
+seq: 1 HTTP RESPONSE CODE: 200
+r 0.765740 1 257
+a 0.765852 257
+r 0.775393 257 513
+a 0.775413 513
+r 0.775508 513 769
+a 0.775524 769
+r 0.775613 769 1025
+r 0.775647 1025 1281
+r 0.785565 1281 1537
+r 0.785600 1537 1793
+a 0.785617 1793
+r 0.785713 1793 2049
+r 0.785745 2049 2305
+r 0.785776 2305 2561
+r 0.785806 2561 2817
+r 0.795425 2817 3073
+r 0.795459 3073 3329
+r 0.795490 3329 3585
+r 0.795529 3585 3841
+r 0.795561 3841 4097
+r 0.795596 4097 4353
+#### WARNING: route may have changed (ttl was 247, is	55).
+#### WARNING: route may have changed (ttl was 55, is	247).
+r 1.805560 1793 2049
+RTO ===> 1.805551 0.795590
+Retransmission detected...
+RESULT: session.rtt = 0.002240 LastWindow: 10 LIMIT: 6 APPROPRIATE_BYTE_COUNTING
