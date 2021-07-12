@@ -1,5 +1,5 @@
-/* 
- Copyright (c) 2000  
+/*
+ Copyright (c) 2000
  International Computer Science Institute
  All rights reserved.
 
@@ -23,7 +23,7 @@
       This product includes software developed by ACIRI, the AT&T
       Center for Internet Research at ICSI (the International Computer
       Science Institute). This product may also include software developed
-      by Stefan Savage at the University of Washington.  
+      by Stefan Savage at the University of Washington.
  4. The names of ACIRI, ICSI, Stefan Savage and University of Washington
     may not be used to endorse or promote products derived from this software
     without specific prior written permission.
@@ -40,6 +40,9 @@
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
 */
+#include <netinet/in.h>
+#include <net/if.h>
+#include <pcap/pcap.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/time.h>
@@ -57,14 +60,14 @@
 
 pcap_t *pc;		/* pcap device */
 int datalinkOffset;	/* offset of ip packet from datalink packet */
-int captureDebug = 0;
+int captureDebug = 1;
 unsigned int thisTimeZone;
 
 void CaptureInit(uint32 sourceIP, uint16 sourcePort,
 		 uint32 targetIP, uint16 targetPort)
 {
 
-  char *device;
+  char device[IFNAMSIZ];
   char errbuf[PCAP_ERRBUF_SIZE];
   int snaplen = DEFAULT_SNAPLEN;
   int promisc = 1;
@@ -80,11 +83,38 @@ void CaptureInit(uint32 sourceIP, uint16 sourcePort,
   /* XXX - does this belong here? */
   thisTimeZone = gmt2local(0);
 
-  device = pcap_lookupdev(errbuf);
-  if (device == NULL) {
-    fprintf(stderr, "Can't find capture device: %s\n", errbuf);
+  pcap_if_t *alldevs, *iter;
+  if (pcap_findalldevs(&alldevs, errbuf) != 0) {
+    fprintf(stderr, "Can't list capture devices: %s\n", errbuf);
     exit(-1);
-  } 
+  }
+  if (alldevs == NULL) {
+    fprintf(stderr, "No capture devices\n");
+    exit(-1);
+  }
+  for (iter = alldevs; iter != NULL; iter = iter->next) {
+    pcap_addr_t *addr;
+    for (addr = iter->addresses; addr != NULL; addr = addr->next) {
+      if (captureDebug) {
+        printf(
+            "Scanning IP address: %s\n",
+            InetAddress(((struct sockaddr_in *)(addr->addr))->sin_addr.s_addr));
+      }
+      if (((struct sockaddr_in *)(addr->addr))->sin_addr.s_addr == sourceIP) {
+        break;
+      }
+    }
+    if (addr != NULL) {
+      break;
+    }
+  }
+  if (iter == NULL) {
+    fprintf(stderr, "No matching capture device for the IP address: %s\n", InetAddress(sourceIP));
+    exit(-1);
+  }
+  strncpy(device, iter->name, IFNAMSIZ);
+  pcap_freealldevs(alldevs);
+ 
   if (captureDebug) {
     printf("Device name is %s\n", device);
   }
