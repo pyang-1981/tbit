@@ -60,7 +60,8 @@ struct tcphdr {char x[20];};
 struct iphdr {char x[20];};
 struct udphdr {char x[20];};
 struct icmphdr {char x[20];};
-#include <linux/if.h>
+//#include <linux/if.h>
+#include <net/if.h>
 //#include <linux/ip_fw.h>
 #endif /* linux */
 #include <netdb.h>
