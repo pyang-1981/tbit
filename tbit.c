@@ -1,5 +1,5 @@
-/* 
-   Copyright (c) 2000  
+/*
+   Copyright (c) 2000
    International Computer Science Institute
    All rights reserved.
 
@@ -23,7 +23,7 @@
    This product includes software developed by ACIRI, the AT&T
    Center for Internet Research at ICSI (the International Computer
    Science Institute). This product may also include software developed
-   by Stefan Savage at the University of Washington.  
+   by Stefan Savage at the University of Washington.
    4. The names of ACIRI, ICSI, Stefan Savage and University of Washington
    may not be used to endorse or promote products derived from this software
    without specific prior written permission.
@@ -40,6 +40,14 @@
    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
 */
+
+#include <ifaddrs.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <stdint.h>
+#include <string.h>
+#include <sys/types.h>
+
 #include "base.h"
 #include "inet.h"
 #include "capture.h"
@@ -162,7 +170,8 @@ enum test_id {
   LAST_TEST_ID /* do not (re)move this */
 };
 
-void usage (char *progname);
+void usage(char *progname);
+int FindDeviceName(uint32_t sourceIpAddr);
 int GetCannonicalInfo(char *string, char name[MAXHOSTNAMELEN], uint32 *address);
 int BindTcpPort(int sockfd) ; 
 
@@ -400,6 +409,11 @@ int main(int argc, char **argv)
     Quit(NO_SRC_CANON_INFO);
   }
 
+  /* Find the device name corresponding to the source IP address */
+  if (FindDeviceName(sourceIpAddress) < 0) {
+    Quit(NO_DEVICE_NAME);
+  }
+
   if (sourcePort == 0) {
 
     /* Find and allocate a spare TCP port to use */
@@ -429,10 +443,12 @@ int main(int argc, char **argv)
   /* Init packet capture device and install filter for our flow */
   /* Filter will be associated with transmitted packets*/
   CaptureInit(sourceIpAddress, sourcePort, targetIpAddress, targetPort);
-
   session.initCapture = 1;
   
- 
+  /* Reset LRO, GRO */
+  ResetLroGro();
+  session.initLroGro = 1;
+
   session.rtt_unreliable = 0;
   session.num_reordered = 0;
 
@@ -715,6 +731,32 @@ void usage (char *progname) {
   printf("\n\t\tECN_IPOnly | \n\t\tSackRcvr | \n\t\tDelAck | \n\t\tTimeWait | \n\t\tIniRTO | \n\t\tPiggyFIN | \n\t\tSackSndr3P |");
   printf("\n\t\tTotData | \n\t\tFlags | \n\t\tNewECN |\n\t\tLossRate | \n\t\tPMTUD>");
   printf("\n\t<hostname | ipaddr>\n");
+}
+
+int FindDeviceName(uint32_t sourceIpAddress)
+{
+  struct ifaddrs *ifs, *i;
+
+  if (getifaddrs(&ifs) < 0) {
+    perror("ERROR: cannot list interfaces");
+    return -1;
+  }
+
+  for (i = ifs; i != NULL; i = i->ifa_next) {
+    struct sockaddr_in *addr = (struct sockaddr_in *)i->ifa_addr;
+    if (addr->sin_addr.s_addr == sourceIpAddress) {
+      break;
+    }
+  }
+
+  if (i != NULL) {
+    strncpy(session.dev, i->ifa_name, IFNAMSIZ);
+    freeifaddrs(ifs);
+    return 0;
+  }
+
+  freeifaddrs(ifs);
+  return -1;
 }
 
 int GetCannonicalInfo(char *string, char name[MAXHOSTNAMELEN], uint32 *address)

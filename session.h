@@ -42,6 +42,8 @@
  SUCH DAMAGE.
 */
 
+#include <net/if.h>
+#include <stdint.h>
 #define MAXREQUESTLEN 1000
 
 struct TcpSession {
@@ -98,7 +100,12 @@ struct TcpSession {
   int verbose; 
   int initSession; 
   int initCapture; 
-  int initFirewall; 
+  int initFirewall;
+  int initLroGro;
+  int lroEnable;
+  int groEnable;
+  uint32_t ethFlags;
+  char dev[IFNAMSIZ];
   int firewall_rule_number;
   char *filename;
   int maxpkts; 

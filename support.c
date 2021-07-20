@@ -48,6 +48,14 @@
 #include "tbit.h"
 #include "reno.h"
 
+#include <linux/ethtool.h>
+#include <linux/sockios.h>
+#include <net/if.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
 #include <sys/time.h>
 #include <time.h>
 extern struct TcpSession session; 
@@ -97,6 +105,108 @@ void  SigHandle (int signo)
   exit(-1);
 }
 
+static int GetEthtoolConfig(const char *dev, int cmd, uint32_t *value)
+{
+  int fd;
+  struct ifreq ifr;
+  struct ethtool_value val;
+
+  if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+    perror("ERROR: cann't open a socket for ethtool config");
+    return -1;
+  }
+
+  (void)strncpy(ifr.ifr_name, dev,  sizeof(ifr.ifr_name));
+  val.cmd = cmd;
+  ifr.ifr_data = (char *)&val;
+  if (ioctl(fd, SIOCETHTOOL, (char *)&ifr) < 0 ) {
+    perror("ERROR: cannot get ethtool config");
+    close(fd);
+    return -1;
+  }
+
+  *value = val.data;
+  close(fd);
+  return 0;
+}
+
+static int SetEthtoolConfig(const char *dev, int cmd, uint32_t value)
+{
+  int fd;
+  struct ifreq ifr;
+  struct ethtool_value val;
+
+  if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+    perror("ERROR: cann't open a socket for ethtool config");
+    return -1;
+  }
+
+  (void)strncpy(ifr.ifr_name, dev, sizeof(ifr.ifr_name));
+  val.cmd = cmd;
+  val.data = value;
+  ifr.ifr_data = (char *)&val;
+  if (ioctl(fd, SIOCETHTOOL, (char *)&ifr) < 0) {
+    perror("ERROR: cannot set ethtool config");
+    close(fd);
+    return -1;
+  }
+
+  close(fd);
+  return 0;
+}
+
+static void RestoreLroGro()
+{
+  if (session.lroEnable) {
+    SetEthtoolConfig(session.dev, ETHTOOL_SFLAGS, session.ethFlags);
+  }
+
+  if (session.groEnable) {
+    SetEthtoolConfig(session.dev, ETHTOOL_SGRO, 1);
+  }
+}
+
+void ResetLroGro()
+{
+  uint32_t value = 0;
+
+  if (GetEthtoolConfig(session.dev, ETHTOOL_GGRO, &value) < 0) {
+    exit(-1);
+  }
+  if (value == 0) {
+    session.groEnable = 0;
+  } else {
+    session.groEnable = 1;
+  }
+
+  value = 0;
+  if (GetEthtoolConfig(session.dev, ETHTOOL_GFLAGS, &value) < 0) {
+    exit(-1);
+  }
+  session.ethFlags = value;
+  if (value & ETH_FLAG_LRO) {
+    session.lroEnable = 1;
+  } else {
+    session.lroEnable = 0;
+  }
+
+  if (session.groEnable) {
+    if (SetEthtoolConfig(session.dev, ETHTOOL_SGRO, 0) < 0) {
+      exit(-1);
+    }
+  }
+
+  if (session.lroEnable) {
+    value ^= ETH_FLAG_LRO;
+    if (SetEthtoolConfig(session.dev,ETHTOOL_SFLAGS, value) < 0) {
+      RestoreLroGro();
+      exit(-1);
+    }
+  }
+
+  session.initLroGro = 1;
+}
+
 void Cleanup()
 {
 
@@ -131,6 +241,9 @@ void Cleanup()
     CaptureEnd();
   }
 
+  if (session.initLroGro > 0) {
+    RestoreLroGro();
+  }
 }
 
 void Quit(int how)
@@ -301,3 +414,4 @@ void busy_wait (double wait)
     x = GetTime();
   }
 }
+

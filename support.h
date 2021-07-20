@@ -72,4 +72,5 @@ double GetTime();
 double GetTimeMicroSeconds(); 
 void PrintTimeStamp(struct timeval *ts); 
 void processBadPacket (struct IPPacket *p);
-void busy_wait (double wait);
+void busy_wait(double wait);
+void ResetLroGro();
