@@ -102,7 +102,8 @@
 #define  UNKNOWN_BEHAVIOR            33
 #define  NO_SYNACK_RCVD              34
 #define  SEND_REQUEST_FAILED         35
-#define  PKT_SIZE_CHANGED            36
+#define PKT_SIZE_CHANGED 36
+#define  NO_DEVICE_NAME              37
 
 /* HTTP Response Codes */
 #define HTTP_OK                     "200"
